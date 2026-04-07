@@ -1,65 +1,133 @@
-import Image from "next/image";
+import Link from "next/link";
+import { BookOpen, Search, ShoppingCart, Truck } from "lucide-react";
+import Navbar from "@/components/layout/navbar";
+import Footer from "@/components/layout/footer";
+import HeroSection from "@/components/home/hero-section";
+import LatestBooksSection from "@/components/home/latest-books-section";
+import BestSellersSection from "@/components/home/best-sellers-section";
 
-export default function Home() {
+const FEATURES = [
+  {
+    icon: Search,
+    title: "Cari & Temukan",
+    description: "Telusuri koleksi buku dari berbagai kategori dengan mudah.",
+  },
+  {
+    icon: ShoppingCart,
+    title: "Pesan dengan Mudah",
+    description: "Tambahkan buku ke keranjang dan checkout dalam hitungan menit.",
+  },
+  {
+    icon: Truck,
+    title: "Bayar Saat Diterima",
+    description: "Sistem COD — bayar saat buku sampai di tangan Anda.",
+  },
+] as const;
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+
+      <HeroSection />
+
+      <LatestBooksSection />
+
+      <BestSellersSection />
+
+      <section className="bg-white px-4 py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-violet-900 sm:text-4xl">Kenapa Harus FURABBOOKS?</h2>
+            <p className="mt-4 text-lg text-violet-500">
+              Kami hadir untuk memberikan pengalaman berbelanja buku terbaik, dari mulai pencarian hingga buku sampai di
+              tanganmu dengan aman.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {FEATURES.map(({ icon: Icon, title, description }) => (
+              <div
+                key={title}
+                className="relative group overflow-hidden rounded-3xl bg-white p-8 shadow-sm ring-1 ring-violet-100 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-violet-100"
+              >
+                <div className="absolute inset-0 bg-violet-100/20 opacity-0 transition-opacity group-hover:opacity-100" />
+
+                <div className="relative">
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100/50 transition-transform group-hover:scale-110">
+                    <Icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="mb-3 text-xl font-semibold text-violet-900">{title}</h3>
+                  <p className="text-violet-500 leading-relaxed">{description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="bg-white px-4 py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-20">
+            <div className="relative order-last md:order-first">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="overflow-hidden rounded-3xl shadow-lg">
+                  <img
+                    src="https://images.unsplash.com/photo-1550399105-c4db5fb85c18?q=80&w=2071&auto=format&fit=crop"
+                    alt="Library shelf"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="mt-8 overflow-hidden rounded-3xl shadow-lg">
+                  <img
+                    src="https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1887&auto=format&fit=crop"
+                    alt="Curved library wall"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-violet-700 shadow-2xl ring-8 ring-white">
+                  <BookOpen className="h-8 w-8 text-white" />
+                </div>
+              </div>
+            </div>
+
+            <div className="text-violet-900">
+              <h2 className="font-serif text-4xl font-bold tracking-tight sm:text-5xl">Mengenal Furabbooks</h2>
+              <p className="mt-6 text-base leading-relaxed text-violet-600">
+                Furabbooks lahir dari kecintaan sederhana terhadap aroma kertas dan imajinasi yang tak terbatas. Nama
+                Furabbooks diambil dari semangat kami untuk menjadi "wadah" (box) yang menyediakan literatur bagi siapa
+                saja (for everyone).
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-violet-600">
+                Kami percaya bahwa setiap orang memiliki satu buku yang bisa mengubah hidup mereka, dan tugas kami
+                adalah membantu Anda menemukannya. Sejak 2023, kami berkomitmen untuk mendukung ekosistem literasi di
+                Indonesia dengan menyediakan akses mudah ke buku-buku berkualitas.
+              </p>
+
+              <div className="mt-10 flex gap-8">
+                <div>
+                  <p className="text-4xl font-bold text-violet-700">50k+</p>
+                  <p className="mt-1 text-sm font-medium text-violet-600">Koleksi Buku</p>
+                </div>
+                <div className="h-16 w-px bg-violet-200"></div>
+                <div>
+                  <p className="text-4xl font-bold text-violet-700">100k+</p>
+                  <p className="mt-1 text-sm font-medium text-violet-600">Pelanggan Puas</p>
+                </div>
+                <div className="h-16 w-px bg-violet-200"></div>
+                <div>
+                  <p className="text-4xl font-bold text-violet-700">2023</p>
+                  <p className="mt-1 text-sm font-medium text-violet-600">Tahun Berdiri</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
+      </section>
+
+      <Footer />
     </div>
   );
 }

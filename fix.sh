@@ -1,0 +1,1 @@
+sed -i 's/<h3 className="font-bold text-violet-950 line-clamp-1 group-hover:text-violet-600 transition">{book.title}<\/h3>/<Link href={`\/books\/${book.id}`} className="font-bold text-violet-950 line-clamp-1 hover:text-violet-600 transition">{book.title}<\/Link>/' src/app/\(user\)/books/page.tsx
